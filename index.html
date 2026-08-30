@@ -126,14 +126,142 @@
     .tag.train{background:#fff1e8; color:#a75a1d}
     .foot{margin-top:12px; color:#cfd7eb; font-size:13px; text-align:center}
     .accent-link{color:#c4d7ff}
-  </style>
+
+    .hero-top{display:flex; align-items:flex-start; justify-content:space-between; gap:16px}
+    .hero-copy{min-width:0}
+    .hero-emblem{
+      width:72px; height:72px; flex:0 0 72px;
+      display:grid; place-items:center;
+      filter:drop-shadow(0 10px 16px rgba(0,0,0,.25));
+    }
+    .hero-emblem svg{width:68px;height:68px;display:block}
+
+  
+    select{
+      width:100%; padding:13px 14px; border-radius:14px;
+      border:1px solid var(--line); background:rgba(255,255,255,.07);
+      color:var(--text); font:inherit; outline:none;
+    }
+    select option{color:#111}
+
+  
+    .friendly-form{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin:16px 0 18px;
+    }
+    .friendly-field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .friendly-field label{
+      font-size:15px;
+      font-weight:650;
+      color:var(--text);
+    }
+    .friendly-field input,
+    .friendly-field select{
+      width:100%;
+      min-height:56px;
+      box-sizing:border-box;
+      padding:0 16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.07);
+      color:var(--text);
+      font:inherit;
+      font-size:18px;
+      outline:none;
+    }
+    .friendly-field select{
+      appearance:auto;
+    }
+    .field-help{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:-2px;
+    }
+    .file-picker{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      box-sizing:border-box;
+      background:rgba(255,255,255,.045);
+    }
+    .file-picker input[type="file"]{
+      min-height:auto;
+      padding:0;
+      border:0;
+      background:transparent;
+      font-size:15px;
+    }
+
+
+    .segmented{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px;
+      padding:5px;
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+    }
+    .seg-btn{
+      min-height:46px;
+      border:0;
+      border-radius:12px;
+      background:transparent;
+      color:var(--text);
+      font:inherit;
+      font-weight:700;
+    }
+    .seg-btn.active{
+      background:linear-gradient(135deg,#6ea8fe,#74f0d6);
+      color:#0f172a;
+    }
+    .tri-hidden{display:none !important;}
+
+</style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <div class="pill">Premium iPhone dashboard</div>
-      <h1>Roster Pay</h1>
-      <div class="sub">Roster PDF’den premium görünümlü tahmini maaş hesabı</div>
+      <div class="hero-top">
+        <div class="hero-copy">
+          <div class="pill">V5.7 ACTIVE</div>
+          <h1>Roster Pay</h1>
+          <div class="sub">Roster PDF’den premium görünümlü tahmini maaş hesabı</div>
+        </div>
+        <div class="hero-emblem" aria-label="Sun emblem">
+          <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="rayG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#EAF3FF"/>
+                <stop offset="100%" stop-color="#9FCBFF"/>
+              </linearGradient>
+              <linearGradient id="seaG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#1D4ED8"/>
+                <stop offset="100%" stop-color="#0F2D6B"/>
+              </linearGradient>
+            </defs>
+            <g fill="url(#rayG)">
+              <path d="M48 7l4 18h-8z"/>
+              <path d="M29 12l10 16-7 3z"/>
+              <path d="M67 12l-3 19-7-3z"/>
+              <path d="M15 26l17 10-4 6z"/>
+              <path d="M81 26L68 42l-4-6z"/>
+              <path d="M9 47l19 3-1 7z"/>
+              <path d="M87 47l-18 10-1-7z"/>
+            </g>
+            <path d="M20 58c7-10 17-15 28-15s21 5 28 15H20z" fill="#FFFFFF"/>
+            <path d="M24 61h48c-4 6-12 11-24 11s-20-5-24-11z" fill="#FF8A00"/>
+            <path d="M19 73h58c-7 9-17 14-29 14S26 82 19 73z" fill="url(#seaG)"/>
+          </svg>
+        </div>
+      </div>
     </section>
 
     <section class="section">
@@ -141,16 +269,56 @@
       <div class="grid2">
         <div class="field" style="grid-column:1/-1">
           <label>PDF dosyan</label>
-          <div class="filebox"><input id="pdfFile" type="file" accept="application/pdf,.pdf"></div>
-        </div>
-        <div class="field">
-          <label>Eğitim günleri</label>
-          <input id="trainingDays" type="text" placeholder="Örn: 1,2,6,7,8,23,24">
-        </div>
-        <div class="field">
-          <label>EUR/TL kuru</label>
-          <input id="fx" type="number" step="0.01" value="63.75">
-        </div>
+          <div class="filebox">
+          
+<div class="friendly-form">
+  <div class="friendly-field">
+    <label for="senioritySelect">Seniority / Baz Maaş</label>
+    <select id="senioritySelect">
+      <option value="5970">0–3 yıl · 5.970 €</option>
+      <option value="6490" selected>4–6 yıl · 6.490 €</option>
+      <option value="6720">7–10 yıl · 6.720 €</option>
+      <option value="7020">11–14 yıl · 7.020 €</option>
+      <option value="7170">15+ yıl · 7.170 €</option>
+    </select>
+  </div>
+
+  <div class="friendly-field">
+    <label for="offToDutyCount">Off to Duty</label>
+    <input id="offToDutyCount" type="number" min="0" step="1" value="0" inputmode="numeric" />
+    <div class="field-help">Her duty için +330 €</div>
+  </div>
+
+
+  <div class="friendly-field">
+    <label>Instructor</label>
+    <div class="segmented" id="instructorToggle">
+      <button type="button" class="seg-btn active" data-value="yes">Yes</button>
+      <button type="button" class="seg-btn" data-value="no">No</button>
+    </div>
+    <input id="instructorMode" type="hidden" value="yes" />
+    <div class="field-help">No seçilirse TRI baz ücreti ve TRI alanları tamamen gizlenir.</div>
+  </div>
+
+  <div class="friendly-field">
+    <label for="pdfFile">Roster PDF</label>
+    <div class="file-picker">
+      <input id="pdfFile" type="file" accept="application/pdf,.pdf" />
+    </div>
+  </div>
+
+  <div class="friendly-field">
+    <label for="trainingDays">Eğitim günleri</label>
+    <input id="trainingDays" type="text" placeholder="Örn: 1,2,6,7,8,23,24" />
+  </div>
+
+  <div class="friendly-field">
+    <label for="fx">EUR/TL kuru</label>
+    <input id="fx" type="text" inputmode="decimal" value="63.75" />
+  </div>
+</div>
+
+
       </div>
       <button id="parseBtn" class="btn" disabled style="margin-top:14px">PDF’yi oku</button>
       <div id="status" class="status">PDF seçince okuma aktif olacak.</div>
@@ -166,21 +334,30 @@
             <div class="kpi"><div class="lbl">Duty</div><div class="val" id="dutyShow">—</div></div>
             <div class="kpi"><div class="lbl">Night</div><div class="val" id="nightShow">—</div></div>
             <div class="kpi"><div class="lbl">Ek sektör</div><div class="val" id="sectorShow">—</div></div>
-            <div class="kpi"><div class="lbl">TRI credit</div><div class="val" id="triShow">—</div></div>
+            <div class="kpi" id="triKpi"><div class="lbl">TRI credit</div><div class="val" id="triShow">—</div></div>
           </div>
         </section>
 
         <section class="panel">
-          <h3>Threshold takibi</h3>
+          <h3>Ek ödeme durumu</h3>
+
           <div class="progress-wrap">
-            <div class="progress-head"><span>Duty ilk 100 saat</span><span id="dutyProgText">—</span></div>
+            <div class="progress-head">
+              <span>Duty · 100 saat üzeri yüksek tarife</span>
+              <span id="dutyProgText">—</span>
+            </div>
             <div class="bar"><span id="dutyProg" style="width:0%"></span></div>
+            <div id="dutyExtraText" class="muted-note" style="margin-top:7px">—</div>
           </div>
-          <div class="progress-wrap">
-            <div class="progress-head"><span>TRI ilk 12 saat</span><span id="triProgText">—</span></div>
+
+          <div class="progress-wrap" id="triProgressWrap" style="margin-top:18px">
+            <div class="progress-head">
+              <span>TRI · İlk 12 saat baz ücrete dahil</span>
+              <span id="triProgText">—</span>
+            </div>
             <div class="bar"><span id="triProg" style="width:0%; background:linear-gradient(90deg,#9b8cff,#ff8fb1)"></span></div>
+            <div id="triExtraText" class="muted-note" style="margin-top:7px">—</div>
           </div>
-          <div class="muted-note">Vergi iadesi, özel sigorta ve kişisel bordro düzeltmeleri bu ekranda dahil değildir. Ama asıl uçuş maaş motoru burada net görünür.</div>
         </section>
       </div>
 
@@ -198,12 +375,18 @@
       </section>
 
       <section class="panel soft-section">
+        <h3>Otomatik yatılar</h3>
+        <div id="hotelAutoSummary" class="muted-note">PDF okunduktan sonra gerçek Hotel istasyonları burada görünecek; DH/Travel transfer noktaları yatı sayılmaz.</div>
+        <div id="hotelAutoCards" class="break-grid" style="margin-top:12px"></div>
+      </section>
+
+      <section class="panel soft-section">
         <h3>Manuel kontrol</h3>
         <div class="grid4 manual">
           <div><label>Duty</label><input id="dutyEdit" type="text"></div>
           <div><label>Night</label><input id="nightEdit" type="text"></div>
           <div><label>Ek sektör</label><input id="sectorEdit" type="number" min="0" step="1"></div>
-          <div><label>TRI toplam credit</label><input id="triEdit" type="text"></div>
+          <div id="triManualField"><label>TRI toplam credit</label><input id="triEdit" type="text"></div>
         </div>
         <div class="grid4 manual" style="margin-top:12px">
           <div><label>İç hat tam yatı</label><input id="domFull" type="number" min="0" step="1" value="0"></div>
@@ -225,7 +408,7 @@
           <table>
             <thead>
               <tr>
-                <th>Gün</th><th>Report</th><th>Release</th><th>Tip</th><th>Duty</th><th>Night</th><th>Sektör</th><th>SIM extra</th>
+                <th>Gün</th><th>Report</th><th>Release</th><th>Tip</th><th>Duty</th><th>Night</th><th>Sektör</th><th>SIM eğitim</th>
               </tr>
             </thead>
             <tbody id="rows"></tbody>
@@ -234,16 +417,57 @@
       </section>
     </div>
 
-    <div class="foot">GitHub Pages / PWA beta · premium arayüz</div>
+    <div class="foot">GitHub Pages / PWA beta · premium arayüz · V5.7 ACTIVE</div>
   </div>
 
-<script type="module">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+const senioritySelect=$('senioritySelect');
+if(senioritySelect){
+  senioritySelect.addEventListener('change',()=>calcPay());
+}
+
+
+const offToDutyCountInput=$('offToDutyCount');
+if(offToDutyCountInput){
+  offToDutyCountInput.addEventListener('input',()=>calcPay());
+  offToDutyCountInput.addEventListener('change',()=>calcPay());
+}
+
+
+function applyInstructorMode(){
+  const yes=($('instructorMode')?.value||'yes')==='yes';
+  ['triKpi','triProgressWrap','triManualField'].forEach(id=>{
+    const el=$(id); if(el) el.classList.toggle('tri-hidden', !yes);
+  });
+  document.querySelectorAll('.tri-col').forEach(el=>el.classList.toggle('tri-hidden', !yes));
+  if(!yes){
+    if($('triEdit')) $('triEdit').value='00:00';
+    if($('triShow')) $('triShow').textContent='00:00';
+  } else if(activeDuties.length){
+    recalc();
+    return;
+  }
+  calcPay();
+}
+
+document.querySelectorAll('#instructorToggle .seg-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#instructorToggle .seg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    $('instructorMode').value=btn.dataset.value;
+    applyInstructorMode();
+  });
+});
+applyInstructorMode();
+
+</script>
+<script>
 const $ = id => document.getElementById(id);
 const file = $('pdfFile'), btn = $('parseBtn');
 let pdfjs = null, activeDuties = [], activeCells = [];
 
 const palette = {
-  base:'#6ea8fe', duty:'#74f0d6', night:'#9b8cff', tri:'#f5c56d', sector:'#ff8fb1', lay:'#d1d9ea'
+  base:'#6ea8fe', duty:'#74f0d6', night:'#9b8cff', tri:'#f5c56d', sector:'#ff8fb1', lay:'#d1d9ea', off:'#f59e0b'
 };
 
 file.addEventListener('change', ()=>{
@@ -278,69 +502,270 @@ function groupLines(items){
 function parseCell(day, lines){
   const text = lines.join(' | ');
   const report=(text.match(/Report\s+(\d{1,2}:\d{2})/i)||[])[1]||'';
-  const release=(text.match(/Release\s+(\d{1,2}:\d{2})/i)||[])[1]||'';
-  const standby=/\bSB(?:1|2|-PF)\b/i.test(text);
-  let simExtra=0, sectors=0, plannedFlight=0;
+  const releases=[...text.matchAll(/Release\s+(\d{1,2}:\d{2})/gi)].map(m=>m[1]);
+  const release=releases.length ? releases[releases.length-1] : '';
+  const standby=/\bSB(?:1|2|3|4|5|-PF)\b/i.test(text);
+  const hasDH=/\bDH\b/i.test(text);
+
+  let simExtra=0, simSessions=0, sectors=0, plannedFlight=0;
   const hotels=[];
+
+  const times=s=>[...String(s||'').matchAll(/(\d{1,2}:\d{2})/g)].map(m=>m[1]);
+
+  let standbyEnd='';
   for(const line of lines){
-    if(/BOEING-[A-Z]/i.test(line)){
-      const ts=[...line.matchAll(/(\d{1,2}:\d{2})/g)].map(m=>m[1]);
-      if(ts.length>=2) simExtra += dur(ts[0], ts.at(-1));
+    if(/\bSB(?:1|2|3|4|5|-PF)\b/i.test(line)){
+      const st=times(line);
+      if(st.length>=2) standbyEnd=st[st.length-1];
     }
-    if(/^XQ\d+/i.test(line)){
-      sectors++;
-      const ts=[...line.matchAll(/(\d{1,2}:\d{2})/g)].map(m=>m[1]);
-      if(ts.length>=2) plannedFlight += dur(ts[0], ts.at(-1));
-    }
-    const hm=line.match(/Hotel\s+([A-Z]{3})/i);
-    if(hm) hotels.push(hm[1].toUpperCase());
   }
-  return {day, lines, report, release, standby, simExtra, sectors, plannedFlight, hotels};
+
+  for(let i=0;i<lines.length;i++){
+    const line=lines[i];
+
+    if(/BOEING-[A-Z]/i.test(line)){
+      simSessions++;
+      let ts=times(line);
+      // SIM finish time is often on a wrapped "~ HH:MM" line.
+      for(let j=i+1;j<Math.min(lines.length,i+4)&&ts.length<2;j++){
+        ts=ts.concat(times(lines[j]));
+      }
+      if(ts.length>=2) simExtra += dur(ts[0],ts[1]);
+    }
+
+    if(/\bXQ\d+\b/i.test(line) && !/^\s*~/.test(line)){
+      sectors++;
+      let ts=times(line);
+      if(ts.length<2 && i+1<lines.length) ts=ts.concat(times(lines[i+1]));
+      if(ts.length<2 && i>0) ts=times(lines[i-1]).concat(ts);
+      if(ts.length>=2) plannedFlight += dur(ts[0],ts[1]);
+    }
+
+    if(/\bHotel\b/i.test(line)){
+      let station=(line.match(/Hotel\s+([A-Z]{3})/i)||[])[1]||'';
+      let ts=times(line);
+      const nearby=[];
+      for(let j=Math.max(0,i-3);j<=Math.min(lines.length-1,i+3);j++){
+        if(j!==i) nearby.push(lines[j]);
+      }
+
+      // IMPORTANT: A DH/Travel airport can be only a transfer point (e.g. AYT on the way to KYA).
+      // Never use arbitrary first IATA code for Hotel station. Priority is:
+      // Hotel explicit > Transit > Report/Release > SIM > hotel-adjacent route destination.
+      if(!station){
+        for(const n of nearby){
+          let m=n.match(/\bTransit\s+([A-Z]{3})\b/i);
+          if(m && m[1]!=='ADB'){ station=m[1]; break; }
+        }
+      }
+      if(!station){
+        for(const n of nearby){
+          let m=n.match(/\b(?:Report|Release)\s+\d{1,2}:\d{2}\s+([A-Z]{3})\b/i);
+          if(m && m[1]!=='ADB'){ station=m[1]; break; }
+        }
+      }
+      if(!station){
+        for(const n of nearby){
+          let m=n.match(/\bBOEING-[A-Z]\s+([A-Z]{3})\b/i);
+          if(m && m[1]!=='ADB'){ station=m[1]; break; }
+        }
+      }
+      if(!station){
+        // Last resort only: destination of a route line nearest Hotel.
+        // Travel/DH ORIGIN is deliberately ignored to avoid AYT/KYA double counting.
+        for(const n of nearby){
+          let m=n.match(/~\s*\d{1,2}:\d{2}\s+([A-Z]{3})\b/i);
+          if(m && m[1]!=='ADB'){ station=m[1]; break; }
+        }
+      }
+
+      for(const n of nearby) ts=ts.concat(times(n));
+      hotels.push({station:(station||'').toUpperCase(), times:ts.slice(0,2), raw:line});
+    }
+  }
+
+  // Useful airport codes in the day cell, for hotel-station inference.
+  const codes=[...text.matchAll(/\b([A-Z]{3})\b/g)].map(m=>m[1])
+    .filter(c=>!['OFF','SIM'].includes(c));
+
+  return {day, lines, text, report, release, releases, standby, standbyEnd, hasDH, simExtra, simSessions, sectors, plannedFlight, hotels, codes};
 }
 
 function pair(cells){
   const out=[]; let open=null;
+
   for(const c of cells){
+    // Overnight carry-over:
+    // a day cell may contain previous night's Release first, then a new Report later.
+    const reportH=toH(c.report);
+    const releaseH=toH(c.release);
+    const releaseBelongsToPrevious = !!(
+      open && c.release && c.report &&
+      reportH!=null && releaseH!=null &&
+      releaseH < reportH
+    );
+
+    if(releaseBelongsToPrevious){
+      open.release=c.release;
+      out.push(open);
+      open=null;
+    }
+
     if(c.report){
-      if(open) out.push(open);
-      open={day:c.day, report:c.report, release:'', standby:c.standby, simExtra:c.simExtra, sectors:c.sectors, plannedFlight:c.plannedFlight, lines:[...c.lines]};
+      if(open){
+        out.push(open);
+        open=null;
+      }
+
+      open={
+        day:c.day, report:c.report, release:'', standby:c.standby,
+        standbyEnd:c.standbyEnd||'', hasDH:!!c.hasDH,
+        simExtra:c.simExtra, simSessions:c.simSessions||0,
+        sectors:c.sectors, plannedFlight:c.plannedFlight,
+        lines:[...c.lines], codes:[...(c.codes||[])]
+      };
+
+      if(c.release && !releaseBelongsToPrevious){
+        open.release=c.release;
+        out.push(open);
+        open=null;
+      }
     } else if(open){
       open.simExtra += c.simExtra;
+      open.simSessions += (c.simSessions||0);
       open.sectors += c.sectors;
       open.plannedFlight += c.plannedFlight;
+      open.hasDH = open.hasDH || !!c.hasDH;
+      open.standby = open.standby || c.standby;
+      if(c.standbyEnd) open.standbyEnd=c.standbyEnd;
       open.lines.push(...c.lines);
-    }
-    if(c.release && open){
-      open.release = c.release;
-      out.push(open); open=null;
+      open.codes.push(...(c.codes||[]));
+
+      if(c.release){
+        open.release=c.release;
+        out.push(open);
+        open=null;
+      }
     }
   }
+
   if(open) out.push(open);
-  return out;
+
+  const merged=[];
+  for(const d of out){
+    const prev=merged[merged.length-1];
+    if(prev && prev.day===d.day){
+      const combinedHasDH=!!prev.hasDH || !!d.hasDH;
+      const combinedSectors=(prev.sectors||0)+(d.sectors||0);
+
+      if(combinedHasDH && combinedSectors>0){
+        prev.release=d.release || prev.release;
+        prev.hasDH=combinedHasDH;
+        prev.sectors=combinedSectors;
+        prev.plannedFlight=(prev.plannedFlight||0)+(d.plannedFlight||0);
+        prev.simExtra=(prev.simExtra||0)+(d.simExtra||0);
+        prev.simSessions=(prev.simSessions||0)+(d.simSessions||0);
+        prev.standby=prev.standby || d.standby;
+        if(!prev.standbyEnd && d.standbyEnd) prev.standbyEnd=d.standbyEnd;
+        prev.lines.push(...(d.lines||[]));
+        prev.codes.push(...(d.codes||[]));
+        prev.dhFlightComposite=true;
+        continue;
+      }
+    }
+    merged.push(d);
+  }
+
+  merged.forEach(d=>{
+    if(d.hasDH && (d.sectors||0)>0) d.dhFlightComposite=true;
+  });
+
+  return merged;
 }
 
 async function extractPdf(f){
   if(!pdfjs){
-    $('status').textContent='PDF okuyucu yükleniyor…';
-    pdfjs = await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/+esm');
+    $('status').textContent='PDF okuyucu hazırlanıyor…';
+    pdfjs = window.pdfjsLib;
+    if(!pdfjs) throw new Error('PDF.js yüklenemedi. İnternet bağlantısını kontrol et.');
+    pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
+
   const data=new Uint8Array(await f.arrayBuffer());
   const doc=await pdfjs.getDocument({data}).promise;
   const cells=[];
-  for(let p=1; p<=doc.numPages; p++){
+  let allText='';
+
+  function cluster(vals, tol){
+    const groups=[];
+    for(const v of vals.sort((a,b)=>a-b)){
+      let g=groups.find(x=>Math.abs(x.center-v)<tol);
+      if(!g){ g={vals:[v],center:v}; groups.push(g); }
+      else { g.vals.push(v); g.center=g.vals.reduce((a,b)=>a+b,0)/g.vals.length; }
+    }
+    return groups.sort((a,b)=>a.center-b.center).map(g=>g.center);
+  }
+
+  for(let p=1;p<=doc.numPages;p++){
     const page=await doc.getPage(p), tc=await page.getTextContent();
-    const items=tc.items.filter(i=>i.str&&i.str.trim()).map(i=>({str:i.str.trim(),x:i.transform[4],y:i.transform[5],h:Math.abs(i.transform[3])}));
-    const dayMarks=items.filter(i=>/^([1-9]|[12]\d|3[01])$/.test(i.str)&&i.h>10).map(i=>({...i,day:Number(i.str)}));
-    for(const h of dayMarks){
-      const near=items.filter(it=>Math.abs(it.x-h.x)<34 && it.y<h.y && h.y-it.y<115);
-      cells.push({page:p, day:h.day, x:h.x, y:h.y, lines:groupLines(near)});
+    const items=tc.items
+      .filter(i=>i.str&&i.str.trim())
+      .map(i=>({str:i.str.trim(),x:i.transform[4],y:i.transform[5],h:Math.abs(i.transform[3])}));
+
+    allText += ' ' + items.map(i=>i.str).join(' ');
+
+    const headers=items
+      .filter(i=>/^([1-9]|[12]\d|3[01])$/.test(i.str)&&i.h>10)
+      .map(i=>({...i,day:Number(i.str)}));
+
+    if(!headers.length) continue;
+
+    // Calendar day headers provide the seven left edges and row top edges.
+    const xs=cluster(headers.map(h=>h.x),18);
+    const ys=cluster(headers.map(h=>h.y),5).sort((a,b)=>b-a);
+
+    for(const h of headers){
+      const col=xs.reduce((best,x,idx)=>Math.abs(x-h.x)<Math.abs(xs[best]-h.x)?idx:best,0);
+      const row=ys.reduce((best,y,idx)=>Math.abs(y-h.y)<Math.abs(ys[best]-h.y)?idx:best,0);
+
+      const left=xs[col]-7;
+      const right=col<xs.length-1 ? xs[col+1]-7 : Number.POSITIVE_INFINITY;
+      const top=ys[row]+5;
+      const bottom=row<ys.length-1 ? ys[row+1]+5 : Number.NEGATIVE_INFINITY;
+
+      const cellItems=items.filter(it =>
+        it !== h &&
+        it.x >= left && it.x < right &&
+        it.y <= top && it.y > bottom
+      );
+
+      cells.push({page:p,row,col,day:h.day,lines:groupLines(cellItems)});
     }
   }
-  cells.sort((a,b)=>a.page-b.page||b.y-a.y||a.x-b.x);
-  let start=cells.findIndex(c=>c.day===1);
-  return cells.slice(Math.max(0,start));
-}
 
+  cells.sort((a,b)=>a.page-b.page||a.row-b.row||a.col-b.col);
+
+  // Determine roster month and take exactly that calendar month's day cells.
+  const monthNames={
+    january:0,february:1,march:2,april:3,may:4,june:5,
+    july:6,august:7,september:8,october:9,november:10,december:11
+  };
+  let year=null, month=null;
+  const lower=allText.toLowerCase();
+  for(const [name,idx] of Object.entries(monthNames)){
+    const m=lower.match(new RegExp(name+'\\s+(20\\d{2})'));
+    if(m){ month=idx; year=Number(m[1]); break; }
+  }
+
+  let first=cells.findIndex(c=>c.day===1);
+  if(first<0) first=0;
+
+  if(year!=null && month!=null){
+    const daysInMonth=new Date(year,month+1,0).getDate();
+    return cells.slice(first, first+daysInMonth);
+  }
+  return cells.slice(first);
+}
 function renderType(d){
   let tag='Duty', cls='';
   if(d.standby){ tag='STBY'; cls='stby'; }
@@ -349,17 +774,232 @@ function renderType(d){
   return `<span class="tag ${cls}">${tag}</span>`;
 }
 
+const TURKEY_IATA = new Set([
+  'ADB','AYT','IST','SAW','ESB','ADA','GZT','DIY','TZX','SZF','KYA','ASR','DLM','BJV','VAN','ERZ',
+  'HTY','GNY','MQM','EDO','KCM','MLX','NAV','VAS','DNZ','KZR','OGU','RZV','BAL','BZI','CKZ','USQ',
+  'AFY','AJI','BGG','CII','IGD','ISE','KSY','MSR','NOP','ONQ','TEQ','AJI'
+]);
+
+function cellText(c){ return (c.lines||[]).join(' '); }
+
+function inferHotelStation(c){
+  // First trust station resolved from Hotel-specific parsing.
+  for(const h of (c.hotels||[])){
+    if(h.station && h.station!=='ADB') return h.station;
+  }
+
+  const lines=c.lines||[];
+
+  // Hotel-adjacent operational location is more reliable than DH/Travel transfer airport.
+  for(const line of lines){
+    let m=line.match(/\bHotel\s+([A-Z]{3})\b/i);
+    if(m && m[1]!=='ADB') return m[1];
+  }
+  for(const line of lines){
+    let m=line.match(/\bTransit\s+([A-Z]{3})\b/i);
+    if(m && m[1]!=='ADB') return m[1];
+  }
+  for(const line of lines){
+    let m=line.match(/\b(?:Report|Release)\s+\d{1,2}:\d{2}\s+([A-Z]{3})\b/i);
+    if(m && m[1]!=='ADB') return m[1];
+  }
+  for(const line of lines){
+    let m=line.match(/\bBOEING-[A-Z]\s+([A-Z]{3})\b/i);
+    if(m && m[1]!=='ADB') return m[1];
+  }
+
+  // Deliberately do NOT fall back to arbitrary DH/Travel airport.
+  return '';
+}
+function findOutboundTime(cells, hotelDay, station){
+  // Same day first, then one day before (DXB trip starts the previous evening).
+  const candidates=cells.filter(c=>c.day===hotelDay || c.day===hotelDay-1).sort((a,b)=>a.day-b.day);
+  for(const c of candidates){
+    for(const line of (c.lines||[])){
+      // Any operated/DH departure from ADB.
+      const m=line.match(/\b(?:XQ\d+|DH)\s+ADB\s+(\d{1,2}:\d{2})/i);
+      if(m) return {day:c.day,time:m[1]};
+    }
+  }
+  return {day:hotelDay,time:''};
+}
+
+function findReturn(cells, hotelDay, station){
+  // Search hotel day and next two days for a duty ending back at ADB.
+  const candidates=cells.filter(c=>c.day>=hotelDay && c.day<=hotelDay+2).sort((a,b)=>a.day-b.day);
+  for(const c of candidates){
+    const txt=cellText(c);
+    const rel=(txt.match(/Release\s+(\d{1,2}:\d{2})\s+ADB/i)||[])[1];
+    if(rel) return {day:c.day,time:rel};
+    // Fallback: release time on a day containing a return-to-ADB sector.
+    if(/\~\s*\d{1,2}:\d{2}\s+ADB\b/i.test(txt)){
+      const r=(txt.match(/Release\s+(\d{1,2}:\d{2})/i)||[])[1];
+      if(r) return {day:c.day,time:r};
+    }
+  }
+  return {day:hotelDay,time:''};
+}
+
+function detectLayovers(cells){
+  const hotelCells=cells.filter(c=>(c.hotels||[]).length || /\bHotel\b/i.test(cellText(c)));
+
+  // First collect hotel markers. Multiple "Hotel" lines belonging to the same
+  // overnight rest can occur in two adjacent calendar cells; merge them.
+  const markers=[];
+  for(const c of hotelCells){
+    const station=inferHotelStation(c);
+    if(!station) continue;
+    markers.push({station,day:c.day});
+  }
+  markers.sort((a,b)=>a.day-b.day || a.station.localeCompare(b.station));
+
+  const groups=[];
+  for(const m of markers){
+    const prev=groups[groups.length-1];
+    if(prev && prev.station===m.station && m.day<=prev.lastHotelDay+1){
+      prev.lastHotelDay=Math.max(prev.lastHotelDay,m.day);
+      if(!prev.hotelDays.includes(m.day)) prev.hotelDays.push(m.day);
+    }else{
+      groups.push({station:m.station,firstHotelDay:m.day,lastHotelDay:m.day,hotelDays:[m.day]});
+    }
+  }
+
+  let stays=groups.map(g=>{
+    const out=findOutboundTime(cells,g.firstHotelDay,g.station);
+    const ret=findReturn(cells,g.lastHotelDay,g.station);
+
+    const startDay=out.day;
+    const endDay=ret.day;
+    const startH=toH(out.time);
+    const endH=toH(ret.time);
+
+    let equivalentDays=0;
+    if(startDay===endDay){
+      equivalentDays=(startH!=null && startH<14 && endH!=null && endH>14)?1:0.5;
+    }else{
+      // Departure day: full only if leaving base before 14:00 local.
+      if(startH!=null && startH<14) equivalentDays+=1;
+
+      // Calendar days fully spent away from base.
+      equivalentDays+=Math.max(0,endDay-startDay-1);
+
+      // Return day: <=14:00 half, >14:00 full.
+      if(endH!=null) equivalentDays+=endH<=14?0.5:1;
+      else equivalentDays+=0.5;
+    }
+
+    return {
+      station:g.station,
+      domestic:TURKEY_IATA.has(g.station),
+      startDay,endDay,startTime:out.time,endTime:ret.time,
+      days:equivalentDays
+    };
+  });
+
+  // Deduplicate overlapping/identical stays created by split Hotel text.
+  // Same station + overlapping trip window = one physical layover.
+  stays.sort((a,b)=>a.startDay-b.startDay || a.endDay-b.endDay);
+  const dedup=[];
+  for(const s of stays){
+    const same=dedup.find(x =>
+      x.station===s.station &&
+      s.startDay<=x.endDay &&
+      s.endDay>=x.startDay
+    );
+    if(!same){
+      dedup.push({...s});
+    }else{
+      // Keep the widest interval, never add the days twice.
+      same.startDay=Math.min(same.startDay,s.startDay);
+      same.endDay=Math.max(same.endDay,s.endDay);
+      if(!same.startTime && s.startTime) same.startTime=s.startTime;
+      if(!same.endTime && s.endTime) same.endTime=s.endTime;
+      same.days=Math.max(same.days,s.days);
+    }
+  }
+
+  return dedup;
+}
+function applyLayovers(cells){
+  const stays=detectLayovers(cells);
+  let domEq=0,intEq=0;
+  stays.forEach(s=>{ if(s.domestic) domEq+=s.days; else intEq+=s.days; });
+
+  // Convert equivalent days into full-day and half-day unit inputs.
+  const domFull=Math.floor(domEq), domHalf=Math.round((domEq-domFull)*2);
+  const intFull=Math.floor(intEq), intHalf=Math.round((intEq-intFull)*2);
+
+  $('domFull').value=domFull;
+  $('domHalf').value=domHalf;
+  $('intFull').value=intFull;
+  $('intHalf').value=intHalf;
+
+  const autoLayEuro=domEq*30+intEq*50;
+  $('hotelAutoSummary').textContent = stays.length
+    ? `İç hat ${domEq.toFixed(1).replace('.',',')} gün · Dış hat ${intEq.toFixed(1).replace('.',',')} gün · ${eur(autoLayEuro)}`
+    : 'Hotel kaydı bulunamadı.';
+
+  $('hotelAutoCards').innerHTML = stays.map(s=>`
+    <div class="earn-card">
+      <div class="x">${s.domestic?'İç hat':'Dış hat'} yatı</div>
+      <div class="y">${s.station} · ${String(s.days).replace('.',',')} gün</div>
+      <div class="x">${s.startDay}. gün ${s.startTime||'—'} → ${s.endDay}. gün ${s.endTime||'—'}</div>
+    </div>
+  `).join('');
+
+  return stays;
+}
+
 function recalc(){
   const training=new Set($('trainingDays').value.split(',').map(x=>Number(x.trim())).filter(Boolean));
+  const instructorMode=($('instructorMode')?.value||'yes')==='yes';
   let duty=0, night=0, sectors=0, tri=0;
+
   activeDuties.forEach(d=>{
     const base=dur(d.report,d.release);
-    d.credit=d.standby ? base*.25 : base + d.simExtra;
-    d.night=d.standby ? 0 : overlapNight(d.report,d.release);
-    d.extra=Math.max(0, d.sectors-2);
+    const hasFlightSectors=(d.sectors||0)>0;
+    const hasActiveDuty=hasFlightSectors || !!d.hasDH || (d.simSessions||0)>0;
+    const postFlightDuty=hasActiveDuty ? 0.5 : 0;
+
+    // DUTY RULES V5.7 (CAE-aligned)
+    // Flight / DH / SIM: FIRST Report -> FINAL Release + 00:30 post-flight.
+    // DH + operating flight is one continuous duty whether DH is before or after the flight.
+    // The +00:30 is added ONCE at the end of that full duty.
+    // Standby-only: %25.
+    // Activated standby: standby section %25 + active section %100 + 00:30 post-flight.
+    if(d.standby && hasActiveDuty && d.standbyEnd){
+      const standbyPart=dur(d.report,d.standbyEnd)*0.25;
+      const activePart=dur(d.standbyEnd,d.release);
+      d.credit=standbyPart + activePart + 0.5;
+      d.activatedStandby=true;
+      d.standbyCredit=standbyPart;
+      d.activeCredit=activePart;
+    } else if(d.standby){
+      d.credit=base*0.25;
+      d.activatedStandby=false;
+      d.standbyCredit=d.credit;
+      d.activeCredit=0;
+    } else {
+      d.credit=base + postFlightDuty;
+      d.activatedStandby=false;
+      d.standbyCredit=0;
+      d.activeCredit=base;
+    }
+    d.night=d.standby && !d.activatedStandby ? 0 : overlapNight(d.report,d.release);
+    d.postFlightDuty=postFlightDuty;
+    d.extra=Math.max(0,d.sectors-2);
     d.training=training.has(d.day);
-    duty += d.credit; night += d.night; sectors += d.extra;
-    if(d.training) tri += d.simExtra>0 ? base : d.plannedFlight;
+
+    duty += d.credit;
+    night += d.night;
+    sectors += d.extra;
+
+    if(instructorMode && d.training){
+      // SIM training: +6:00 TRI instructor credit per SIM session.
+      // This affects TRI pay only. SIM duty itself stays Report -> Release.
+      if((d.simSessions||0)>0) tri += (d.simSessions||0)*6;
+      else tri += d.plannedFlight;
+    }
   });
 
   $('dutyEdit').value=hhmm(duty);
@@ -372,24 +1012,42 @@ function recalc(){
   $('sectorShow').textContent=String(sectors);
   $('triShow').textContent=hhmm(tri);
 
-  $('dutyProgText').textContent = `${hhmm(duty)} / 100:00`;
-  $('triProgText').textContent = `${hhmm(tri)} / 12:00`;
-  $('dutyProg').style.width = `${Math.min(100, (duty/100)*100)}%`;
-  $('triProg').style.width = `${Math.min(100, (tri/12)*100)}%`;
+  $('dutyProgText').textContent = duty>100 ? '100 saat aşıldı' : `${hhmm(duty)} / 100:00`;
+  $('triProgText').textContent = tri>12 ? '12 saat aşıldı' : `${hhmm(tri)} / 12:00`;
+  $('dutyProg').style.width=`${Math.min(100,(duty/100)*100)}%`;
+  $('triProg').style.width=`${Math.min(100,(tri/12)*100)}%`;
+  const dutyHighHours=Math.max(0,duty-100);
+  const triExtraHours=Math.max(0,tri-12);
+  $('dutyExtraText').textContent = dutyHighHours>0
+    ? `${hhmm(dutyHighHours)} saat · 52,80 €/saat tarifeden`
+    : `${hhmm(Math.max(0,100-duty))} saat sonra yüksek tarifeye geçer`;
+  $('triExtraText').textContent = triExtraHours>0
+    ? `${hhmm(triExtraHours)} saat · 35 €/saat ekstra TRI`
+    : `${hhmm(Math.max(0,12-tri))} saat TRI baz ücret içinde kaldı`;
 
-  const hotels=[...new Set(activeCells.flatMap(c=>c.hotels||[]))];
-  $('hotelInfo').textContent = hotels.length ? `Bulunan hotel / yatı istasyonları: ${hotels.join(', ')}` : 'Hotel istasyonu otomatik bulunamadı.';
 
-  $('rows').innerHTML = activeDuties.map(d => `
+  const stays=applyLayovers(activeCells);
+  const hotelStations=[...new Set(stays.map(s=>s.station))];
+  $('hotelInfo').textContent = hotelStations.length
+    ? `Bulunan yatı istasyonları: ${hotelStations.join(', ')}`
+    : 'Hotel/yatı istasyonu otomatik bulunamadı.';
+
+  $('rows').innerHTML=activeDuties.map(d=>`
     <tr>
       <td>${d.day}</td>
       <td>${d.report||'—'}</td>
       <td>${d.release||'—'}</td>
       <td>${renderType(d)}</td>
-      <td>${hhmm(d.credit)}</td>
+      <td>${hhmm(d.credit)}${
+        d.activatedStandby
+          ? ` <span class="muted-note">(SB %25 + aktif duty +00:30)</span>`
+          : (d.dhFlightComposite
+              ? ' <span class="muted-note">(ilk Report → son Release +00:30)</span>'
+              : (d.postFlightDuty ? ' <span class="muted-note">(+00:30 post-flight)</span>' : ''))
+      }</td>
       <td>${hhmm(d.night)}</td>
       <td>${d.sectors}</td>
-      <td>${hhmm(d.simExtra||0)}</td>
+      <td class="tri-col">${(d.training && (d.simSessions||0)>0) ? hhmm((d.simSessions||0)*6) : '—'}</td>
     </tr>
   `).join('');
 
@@ -420,15 +1078,19 @@ function calcPay(){
   const night=toH($('nightEdit').value)||0;
   const tri=toH($('triEdit').value)||0;
   const sectors=Math.max(0, Number($('sectorEdit').value)||0);
-  const fx=Math.max(0, Number($('fx').value)||0);
+  const fx=Math.max(0, Number(String($('fx').value).replace(',','.'))||0);
 
-  const base=6490, triBase=378;
+  const base=Number($('senioritySelect')?.value)||6490;
+  const instructorMode=($('instructorMode')?.value||'yes')==='yes';
+  const triBase=instructorMode ? 378 : 0;
+  const offToDutyCount=Math.max(0, Math.floor(Number($('offToDutyCount')?.value)||0));
+  const offToDutyPay=offToDutyCount*330;
   const dutyPay=Math.min(duty,100)*28.6 + Math.max(0,duty-100)*52.8;
   const nightPay=night*71.3;
   const sectorPay=sectors*17.9;
-  const triPay=triBase + Math.max(0,tri-12)*35;
+  const triPay=instructorMode ? (triBase + Math.max(0,tri-12)*35) : 0;
   const lay=(Number($('domFull').value)||0)*30 + (Number($('domHalf').value)||0)*15 + (Number($('intFull').value)||0)*50 + (Number($('intHalf').value)||0)*25;
-  const total=base+dutyPay+nightPay+triPay+sectorPay+lay;
+  const total=base+dutyPay+nightPay+triPay+sectorPay+lay + offToDutyPay;
 
   $('totalTl').textContent=tl(total*fx);
   $('totalEur').textContent=eur(total);
@@ -437,10 +1099,15 @@ function calcPay(){
     ['Baz maaş', base, palette.base],
     ['Duty', dutyPay, palette.duty],
     ['Night', nightPay, palette.night],
-    ['TRI', triPay, palette.tri],
     ['Sektör', sectorPay, palette.sector],
     ['Yatı', lay, palette.lay],
   ];
+  if(instructorMode){
+    items.splice(3,0,['TRI', triPay, palette.tri]);
+  }
+  if(offToDutyCount > 0){
+    items.push(['Off to Duty', offToDutyPay, palette.off]);
+  }
 
   $('breakdown').innerHTML = items.map(([k,v,c]) => `
     <div class="earn-card">
@@ -462,7 +1129,7 @@ btn.addEventListener('click', async ()=>{
     if(!activeDuties.length) throw new Error('Report/Release görevleri bulunamadı');
     $('results').style.display='block';
     recalc();
-    $('status').textContent='PDF okundu. Sonuçlar hazır.';
+    $('status').textContent='V5.7 ACTIVE · PDF okundu · Görev '+activeDuties.length+' · SIM eğitim credit '+hhmm(activeDuties.reduce((s,d)=>s+((d.training&&d.simSessions)?d.simSessions*6:0),0))+' · TRI toplam '+$('triEdit').value+' · Yatı '+$('hotelAutoSummary').textContent;
   }catch(e){
     $('status').textContent='PDF okunamadı: '+e.message;
   }finally{
@@ -473,7 +1140,55 @@ btn.addEventListener('click', async ()=>{
 ['trainingDays'].forEach(id => $(id).addEventListener('input', ()=>activeDuties.length && recalc()));
 ['dutyEdit','nightEdit','sectorEdit','triEdit','domFull','domHalf','intFull','intHalf','fx'].forEach(id => $(id).addEventListener('input', calcPay));
 
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
+
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(()=>{});
+}
+if ('caches' in window) {
+  caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).catch(()=>{});
+}
+
+
+const senioritySelect=$('senioritySelect');
+if(senioritySelect){
+  senioritySelect.addEventListener('change',()=>calcPay());
+}
+
+
+const offToDutyCountInput=$('offToDutyCount');
+if(offToDutyCountInput){
+  offToDutyCountInput.addEventListener('input',()=>calcPay());
+  offToDutyCountInput.addEventListener('change',()=>calcPay());
+}
+
+
+function applyInstructorMode(){
+  const yes=($('instructorMode')?.value||'yes')==='yes';
+  ['triKpi','triProgressWrap','triManualField'].forEach(id=>{
+    const el=$(id); if(el) el.classList.toggle('tri-hidden', !yes);
+  });
+  document.querySelectorAll('.tri-col').forEach(el=>el.classList.toggle('tri-hidden', !yes));
+  if(!yes){
+    if($('triEdit')) $('triEdit').value='00:00';
+    if($('triShow')) $('triShow').textContent='00:00';
+  } else if(activeDuties.length){
+    recalc();
+    return;
+  }
+  calcPay();
+}
+
+document.querySelectorAll('#instructorToggle .seg-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#instructorToggle .seg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    $('instructorMode').value=btn.dataset.value;
+    applyInstructorMode();
+  });
+});
+applyInstructorMode();
+
 </script>
 </body>
 </html>

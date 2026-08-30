@@ -1,15 +1,9 @@
-# Roster Pay Premium — GitHub Pages
+# Roster Pay Premium V5.7 — Overnight Standby Fix
 
-Bu paket GitHub Pages için hazır premium görünümlü PWA sürümüdür.
-
-## Kurulum
-1. Mevcut repository içindeki eski dosyaların yerine bu ZIP içindeki dosyaları yükleyin.
-2. Repository public olsun.
-3. Settings > Pages > Deploy from a branch > main > /(root)
-4. Birkaç dakika sonra site güncellenir.
-5. iPhone Safari > siteyi aç > Paylaş > Ana Ekrana Ekle
-
-## Not
-- Vergi iadesi ve kişisel sigorta etkileri bu sürümde yok.
-- Yatı tam/yarım adetleri manuel kontrol edilebilir.
-- TRI eğitim günleri virgülle girilir.
+- 18 Sep Report 17:00, SB4 -> 19 Sep Release 00:30:
+  7:30 standby, %25 = 1:53.
+- 19 Sep Report 21:00, SB5 -> 20 Sep Release 04:00:
+  7:00 standby, %25 = 1:45.
+- Parser artık bir gün hücresindeki erken saatli Release'i önceki gecenin göreviyle,
+  daha geç saatli Report'u ise yeni görevle eşleştirir.
+- V5.6 kuralları korunmuştur.
